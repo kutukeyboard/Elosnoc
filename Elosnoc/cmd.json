@@ -1,0 +1,23 @@
+﻿{
+	"users": [
+		{
+			"id": 1,
+			"name": "admin",
+			"password": "masuk",
+			"role": "admin"
+		},
+		{
+			"id": 2,
+			"name": "user",
+			"password": "user",
+			"role": "user"
+		}
+	],
+	"game": [
+		{
+			"id": 1,
+			"uid": 1,
+			"player": ""
+		}
+	]
+}

@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Elosnoc")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("CLI tools for .net developers")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Surya Pradhana Software")]
 [assembly: AssemblyProduct("Elosnoc")]

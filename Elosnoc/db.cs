@@ -85,7 +85,7 @@ namespace Elosnoc
 			
 		}
 		
-		static void ReadData(string myDbType,string myQuery)
+		void ReadData(string myDbType,string myQuery)
 		{
 			DbConnection connection;
 			DbCommand command;
@@ -140,7 +140,7 @@ namespace Elosnoc
 			
 		}
 
-		static void ExecQuery(string myDbType, string myQuery)
+		void ExecQuery(string myDbType, string myQuery)
 		{
 			DbConnection connection;
 			DbCommand command;
@@ -182,10 +182,11 @@ namespace Elosnoc
 				Console.Write("No db connection has been made, please run 'connect [server] [database]' command first!");
 				return;
 			}
+			Console.WriteLine("You can type '//' to go exit query mode");
 			Console.Write("\n" + myDb +"> ");
 			string myQuery = Console.ReadLine();
 			if(myQuery == "//"){return;}
-			ReadData(myDb,myQuery);
+			new db().ReadData(myDb,myQuery);
 			read();
 		}
 
@@ -196,10 +197,11 @@ namespace Elosnoc
 				Console.Write("No db connection has been made, please run 'connect [server] [database]' command first!");
 				return;
 			}
+			Console.WriteLine("You can type '//' to go exit query mode");
 			Console.Write("\n" + myDb + "> ");
 			string myQuery = Console.ReadLine();
 			if (myQuery == "//") { return; }
-			ExecQuery(myDb, myQuery);
+			new db().ExecQuery(myDb, myQuery);
 			exec();
 		}
 		

@@ -52,22 +52,25 @@ namespace Elosnoc
 			if (CheckGlobalFunction(cmd)) {return;}
 			try
 			{
-				string[] longCMD;
+				string[] MyParams;
 				
-				if(cmd.Contains(" ") == true)
+				if(cmd.Contains("-p") == true)
 				{
-					longCMD = cmd.Split(Convert.ToChar(" "));
-					getClass(longCMD[0]);
-					MethodInfo mi = CurrentType.GetMethod(longCMD[0]);
+					string[] splitparam = cmd.Split(new string[] {"-p"}, StringSplitOptions.None);
+
+					MyParams = splitparam[1].TrimStart(Convert.ToChar(" ")).Split(Convert.ToChar(";"));
+					
+					getClass(splitparam[0].Replace(" ", string.Empty));
+					MethodInfo mi = CurrentType.GetMethod(splitparam[0].TrimEnd(Convert.ToChar(" ")));
 					ParameterInfo[] param = mi.GetParameters();
 					
 					object[] pArray = new object[param.Count()];
-					int paramIndex = 1;
+					int paramIndex = 0;
 
 					foreach (var methodArg in param)
 					{
 						Type paramType = methodArg.ParameterType;
-						pArray[methodArg.Position] = Convert.ChangeType(longCMD[paramIndex], paramType);
+						pArray[methodArg.Position] = Convert.ChangeType(MyParams[paramIndex], paramType);
 						paramIndex++;
 					}
 

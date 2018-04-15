@@ -17,7 +17,6 @@ namespace Elosnoc
 
 		static internal void Main()
 		{
-
 			if (greet == false)
 			{
 				Console.ForegroundColor= ConsoleColor.Cyan;
@@ -52,20 +51,20 @@ namespace Elosnoc
 			if (CheckGlobalFunction(cmd)) {return;}
 			try
 			{
-				string[] MyParams;
-				
-				if(cmd.Contains("-p") == true)
+				if(cmd.Contains(" ") == true)
 				{
-					string[] splitparam = cmd.Split(new string[] {"-p"}, StringSplitOptions.None);
+					var MyParams = cmd.Split('"')
+										 .Select((element, index) => index % 2 == 0 
+																					 ? element.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries) 
+																					 : new string[] { element }) 
+										 .SelectMany(element => element).ToList();
 
-					MyParams = splitparam[1].TrimStart(Convert.ToChar(" ")).Split(Convert.ToChar(";"));
-					
-					getClass(splitparam[0].Replace(" ", string.Empty));
-					MethodInfo mi = CurrentType.GetMethod(splitparam[0].TrimEnd(Convert.ToChar(" ")));
+					getClass(MyParams[0]);
+					MethodInfo mi = CurrentType.GetMethod(MyParams[0]);
 					ParameterInfo[] param = mi.GetParameters();
 					
 					object[] pArray = new object[param.Count()];
-					int paramIndex = 0;
+					int paramIndex = 1;
 
 					foreach (var methodArg in param)
 					{
